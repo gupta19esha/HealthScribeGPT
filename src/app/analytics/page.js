@@ -171,7 +171,7 @@ export default function Analytics() {
             <select
               value={entriesCount}
               onChange={(e) => setEntriesCount(Number(e.target.value))}
-              className="text-sm border-gray-200 rounded-md shadow-sm focus:ring-1 focus:ring-black focus:border-black"
+              className="text-sm border-gray-200 rounded-md shadow-sm focus:ring-1 focus:ring-black focus:border-black p-2"
               disabled={isAnalyzing || journalEntries.length === 0}
             >
               <option value={3}>Last 3 entries</option>

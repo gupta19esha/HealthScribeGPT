@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Target, Plus, CheckCircle2, Trophy } from 'lucide-react';
 import { storageUtils } from '@/utils/storage';
+import { getConsistentNow, getConsistentISOString, getConsistentDate } from '../../utils/dateUtils';
 
 export default function Goals() {
   const [goals, setGoals] = useState([]);
@@ -23,11 +24,11 @@ export default function Goals() {
     if (!newGoal.trim()) return;
 
     const newGoalItem = {
-      id: Date.now(),
+      id: getConsistentNow(),
       content: newGoal,
       category: selectedCategory,
       completed: false,
-      createdAt: new Date().toISOString(),
+      createdAt: getConsistentISOString(),
       targetDate: null,
     };
 
@@ -42,12 +43,12 @@ export default function Goals() {
     if (!newHabit.trim()) return;
 
     const newHabitItem = {
-      id: Date.now(),
+      id: getConsistentNow(),
       content: newHabit,
       category: selectedCategory,
       streak: 0,
       lastChecked: null,
-      createdAt: new Date().toISOString()
+      createdAt: getConsistentISOString()
     };
 
     const updatedHabits = [...habits, newHabitItem];
@@ -70,16 +71,16 @@ export default function Goals() {
   const checkHabit = (habitId) => {
     const updatedHabits = habits.map(habit => {
       if (habit.id === habitId) {
-        const today = new Date().toDateString();
+        const today = getConsistentDate().toDateString();
         const lastChecked = habit.lastChecked ? new Date(habit.lastChecked).toDateString() : null;
         
         if (lastChecked !== today) {
           return {
             ...habit,
-            streak: lastChecked === new Date(Date.now() - 86400000).toDateString() 
+            streak: lastChecked === new Date(getConsistentNow() - 86400000).toDateString() 
               ? habit.streak + 1 
               : 1,
-            lastChecked: new Date().toISOString()
+            lastChecked: getConsistentISOString()
           };
         }
       }

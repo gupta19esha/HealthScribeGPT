@@ -1,8 +1,9 @@
 // src/app/dashboard/page.js
 'use client';
 import { useState, useEffect } from 'react';
-import { Clock } from 'lucide-react';
+import { Clock, Link } from 'lucide-react';
 import { storageUtils } from '@/utils/storage';
+import { getConsistentNow, getConsistentISOString } from '../../utils/dateUtils';
 
 export default function Dashboard() {
   const [journalEntry, setJournalEntry] = useState('');
@@ -17,8 +18,8 @@ export default function Dashboard() {
     e.preventDefault();
     
     const newEntry = {
-      id: Date.now(),
-      date: new Date().toISOString(),
+      id: getConsistentNow(),
+      date: getConsistentISOString(),
       content: journalEntry
     };
 
@@ -56,9 +57,9 @@ export default function Dashboard() {
                 >
                   Save Entry
                 </button>
-                <p className="text-sm text-gray-500">
+                  <a href="/analytics" className="text-sm text-gray-500 hover:text-black">
                   Visit Analytics tab for detailed health insights →
-                </p>
+                  </a>
               </div>
             </form>
           </div>

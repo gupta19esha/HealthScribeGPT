@@ -89,7 +89,7 @@ export default function Nutrition() {
                 type="date"
                 value={selectedDate}
                 onChange={(e) => setSelectedDate(e.target.value)}
-                className="text-sm border-gray-200 rounded-md shadow-sm focus:ring-1 focus:ring-black focus:border-black"
+                className="text-sm border-gray-200 rounded-md shadow-sm focus:ring-1 focus:ring-black focus:border-black p-2"
               />
             </div>
             <button
@@ -168,7 +168,7 @@ export default function Nutrition() {
                     <select
                       value={newMeal.type}
                       onChange={(e) => setNewMeal({ ...newMeal, type: e.target.value })}
-                      className="mt-1 block w-full rounded-md border-gray-200 shadow-sm focus:ring-1 focus:ring-black focus:border-black"
+                      className="mt-1 block w-full rounded-md border-gray-200 shadow-sm focus:ring-1 focus:ring-black focus:border-black p-2"
                     >
                       {mealTypes.map(type => (
                         <option key={type.value} value={type.value}>

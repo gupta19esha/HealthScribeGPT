@@ -1,10 +1,11 @@
 // src/components/analytics/PatternAnalysis.js
 'use client';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { getConsistentNow, formatDate } from '../../utils/dateUtils';
 
 export const PatternAnalysis = ({ type, timeRange }) => {
   const data = Array.from({ length: 7 }, (_, i) => ({
-    date: new Date(Date.now() - (i * 24 * 60 * 60 * 1000)).toLocaleDateString('en-US', {
+    date: formatDate(new Date(getConsistentNow() - (i * 24 * 60 * 60 * 1000)), {
       month: 'short',
       day: 'numeric'
     }),

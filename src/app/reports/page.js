@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { FileText, Download, TrendingUp, Calendar, Brain, Heart } from 'lucide-react';
 import ReportContent from '@/components/reports/ReportContent';
+import { getConsistentDate } from '../../utils/dateUtils';
 
 // Analysis helper functions
 const calculateConsistencyScore = (data) => {
@@ -143,8 +144,8 @@ export default function Reports() {
   const generateReport = (entries, goals, habits, meals) => {
     setLoading(true);
     
-    const endDate = new Date();
-    const startDate = new Date();
+    const endDate = getConsistentDate();
+    const startDate = getConsistentDate();
     if (reportPeriod === 'week') startDate.setDate(endDate.getDate() - 7);
     if (reportPeriod === 'month') startDate.setDate(endDate.getDate() - 30);
     if (reportPeriod === 'quarter') startDate.setDate(endDate.getDate() - 90);
@@ -243,7 +244,7 @@ export default function Reports() {
             <select
               value={reportPeriod}
               onChange={(e) => setReportPeriod(e.target.value)}
-              className="text-sm border-gray-200 rounded-md shadow-sm focus:ring-1 focus:ring-black focus:border-black"
+              className="text-sm border-gray-200 rounded-md shadow-sm focus:ring-1 focus:ring-black focus:border-black p-2"
             >
               <option value="week">Last 7 Days</option>
               <option value="month">Last 30 Days</option>

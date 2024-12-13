@@ -1,7 +1,7 @@
 // src/components/reports/ReportContent.js
 'use client';
 import { Heart, Brain, Activity, Sun } from 'lucide-react';
-import { ReportChart } from './ReportChart';
+import ReportChart from './ReportChart';
 
 const ReportContent = ({ data }) => {
   if (!data) return null;

@@ -83,7 +83,7 @@ const Navbar = () => {
           {/* Time Range Selector */}
           <div className="flex items-center">
             <select 
-              className="text-sm border-gray-200 rounded-md shadow-sm focus:ring-1 focus:ring-black focus:border-black"
+              className="text-sm border-gray-200 rounded-md shadow-sm focus:ring-1 focus:ring-black focus:border-black p-2"
             >
               <option value={7}>Last 7 days</option>
               <option value={14}>Last 14 days</option>

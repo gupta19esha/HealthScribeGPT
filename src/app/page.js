@@ -14,27 +14,36 @@ export default function Home() {
     { icon: Sun, text: 'Set and achieve health goals', color: 'text-orange-500' },
   ];
 
+  const backgroundElements = [...Array(20)].map((_, i) => ({
+    left: `${(i * 5) % 100}%`,
+    top: `${Math.floor(i * 5 / 100) * 5}%`,
+    animateX: 50,
+    animateY: 50,
+    scale: 1.5,
+    duration: 5 + (i % 5)
+  }));
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
+        {backgroundElements.map((element, i) => (
           <motion.div
             key={i}
             className="absolute h-2 w-2 rounded-full bg-black opacity-5"
             animate={{
-              x: [0, Math.random() * 100, 0],
-              y: [0, Math.random() * 100, 0],
-              scale: [1, Math.random() + 0.5, 1],
+              x: [0, element.animateX, 0],
+              y: [0, element.animateY, 0],
+              scale: [1, element.scale, 1],
             }}
             transition={{
-              duration: Math.random() * 5 + 5,
+              duration: element.duration,
               repeat: Infinity,
               ease: "easeInOut"
             }}
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: element.left,
+              top: element.top,
             }}
           />
         ))}
